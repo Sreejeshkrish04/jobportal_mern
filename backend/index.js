@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://jobportal-mern-v01m.onrender.com",
   credentials: true,
 };
 app.use(cors(corsOptions));
@@ -46,6 +46,9 @@ app.use("/api/v1/application", applicationRoute);
 // "http://localhost:8000/api/v1/user/ptofile/update"
 
 app.use(express.static(path.join(_dirname, "frontend/dist")));
+app.get("*", (_, res) => {
+  res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
   connectDB();
