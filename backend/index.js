@@ -46,7 +46,7 @@ app.use("/api/v1/application", applicationRoute);
 // "http://localhost:8000/api/v1/user/ptofile/update"
 
 app.use(express.static(path.join(_dirname, "frontend/dist")));
-app.get("/*", (_, res) => {
+app.get("/:catchAll(*)", (_, res) => {
   res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
 });
 
